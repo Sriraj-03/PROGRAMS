@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void solve(int N, int* C) {
+    int *stack = (int*)malloc(N * sizeof(int));
+    int top = -1;
+    for(int i = 0; i < N; i++) {
+        if(C[i] > 0) {
+            stack[++top] = C[i];
+        } else {
+            printf("%d ", stack[top--]);
+        }
+    }
+    free(stack);
+}
+
+int main() {
+    int N = 4;
+    int C[] = {2, 1, 0, 0};
+    solve(N, C);
+    return 0;
+}

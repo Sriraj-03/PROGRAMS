@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int d;
+    struct node *n;
+};
+void add(struct node **h,int da){
+    struct node *p,*c;
+    p=*h;
+    c=(struct node*)malloc(sizeof(struct node));
+    c->d=da;
+    c->n=NULL;
+    if(*h==NULL){
+        *h=c;
+    }
+    else{
+        while(p->n!=NULL){
+            p=p->n;
+        }
+        p->n=c;
+    }
+}
+int sum(struct node **h){
+    struct node *t;
+    t=*h;
+    int sum=0;
+    while(t!=NULL){
+        sum+=t->d;
+        t=t->n;
+    }
+    return sum;
+}
+int main(){
+    struct node *h=NULL;
+    int d;
+    do{
+        scanf("%d",&d);
+        if(d>0){
+            add(&h,d);
+        }
+    }while(d>0);
+    int c=sum(&h);
+    printf("%d",c);
+    return 0;
+}

@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node *n;
+};
+void da(struct node *h){
+    while(h!=NULL){
+        printf("%d ",h->data);
+        h=h->n;
+    }
+}
+void add(struct node **h,int d){
+    struct node *p,*c;
+    p=*h;
+    c=(struct node*)malloc(sizeof(struct node));
+    c->data=d;
+    c->n=NULL;
+    if(*h == NULL){
+        *h=c;
+    }
+    else{
+        while(p->n!= NULL)
+            p=p->n;
+            p->n=c;
+    }
+}
+int main(){
+    struct node *h=NULL;
+  int d;
+   do{
+      scanf("%d",&d);
+      if(d>0){
+          add(&h,d);
+      }
+  }while(d>0);
+  da(h);
+  return 0; 
+}
+
+

@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main() {
+    int size1, size2, i, j = 0, k = 0;
+    printf("Enter the size of the first array: ");
+    scanf("%d", &size1);
+    int arr1[size1];
+    printf("Enter elements of the first array: ");
+    for(i = 0; i < size1; i++) {
+        scanf("%d", &arr1[i]);
+    }
+    printf("Enter the size of the second array: ");
+    scanf("%d", &size2);
+    int arr2[size2];
+    printf("Enter elements of the second array: ");
+    for(i = 0; i < size2; i++) {
+        scanf("%d", &arr2[i]);
+    }
+    int max_size = (size1 > size2) ? size1 : size2;
+    int size3 = 2 * max_size;
+    int arr3[size3];
+    for(i = 0; i < size3; i++) {
+        if(i % 2 == 0) {
+            arr3[i] = (j < size1) ? arr1[j++] : 0;
+        } else {
+            arr3[i] = (k < size2) ? arr2[k++] : 0;
+        }
+    }
+    printf("The merged array is: ");
+    for(i = 0; i < size3; i++) {
+        printf("%d ", arr3[i]);
+    }
+    return 0;
+}

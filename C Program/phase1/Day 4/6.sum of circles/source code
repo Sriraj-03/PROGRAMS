@@ -1,0 +1,50 @@
+#include <stdio.h>
+int sumOfRing(int matrix[][100], int startRow, int endRow, int startCol, int endCol) {
+    int sum = 0;
+    for (int i = startCol; i <= endCol; i++) {
+        sum += matrix[startRow][i];
+    }
+    for (int i = startRow + 1; i <= endRow; i++) {
+        sum += matrix[i][endCol];
+    }
+    if (startRow < endRow) {
+        for (int i = endCol - 1; i >= startCol; i--) {
+            sum += matrix[endRow][i];
+        }
+    }
+    if (startCol < endCol) {
+        for (int i = endRow - 1; i > startRow; i--) {
+            sum += matrix[i][startCol];
+        }
+    }
+    return sum;
+}
+int main() {
+    int matrix[100][100];
+    int rows, cols;
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+    printf("Enter the matrix elements:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    int ringSum = 0;
+    int minDim = (rows < cols) ? rows : cols;
+
+    for (int ring = 0; ring < minDim / 2; ring++) {
+        int sum = sumOfRing(matrix, ring, rows - 1 - ring, ring, cols - 1 - ring);
+        printf("%d%s ring = %d\n", ring + 1, (ring % 2 == 0) ? "st" : "nd", sum);
+        ringSum += sum;
+    }
+    if (minDim % 2 != 0) {
+        int center = matrix[rows / 2][cols / 2];
+        printf("Center element = %d\n", center);
+    }
+
+
+    return 0;
+}

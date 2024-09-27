@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    float data;
+    struct Node* next;
+} Node;
+
+Node* addToEmpty(Node* last, float data) {
+    if (last != NULL)
+        return last;
+
+    Node* temp = (Node*)malloc(sizeof(Node));
+    temp->data = data;
+    temp->next = temp;
+    last = temp;
+
+    return last;
+}
+
+Node* addEnd(Node* last, float data) {
+    if (last == NULL)
+        return addToEmpty(last, data);
+
+    Node* temp = (Node*)malloc(sizeof(Node));
+    temp->data = data;
+    temp->next = last->next;
+    last->next = temp;
+    last = temp;
+
+    return last;
+}
+
+int main() {
+    Node* last = NULL;
+
+    float chocolate, children, gift;
+    scanf("%f %f %f", &chocolate, &children, &gift);
+
+    last = addToEmpty(last, chocolate);
+    last = addEnd(last, children);
+    last = addEnd(last, gift);
+
+    float x, check=0.9555, answer=0;
+    x=(last->next->data / last->next->next->data);
+    answer=(last->data / x) + check;
+    
+    int final=answer;
+    
+    printf("%d is the winner", final);
+
+    return 0;
+}

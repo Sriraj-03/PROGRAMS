@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+    int size, i;
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+    int arr[size];
+    printf("Enter elements of the array: ");
+    for(i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+    int half = size / 2;
+    int arr1[half], arr2[size - half];
+    for(i = 0; i < half; i++) {
+        arr1[i] = arr[i];
+    }
+    for(i = half; i < size; i++) {
+        arr2[i - half] = arr[i];
+    }
+    printf("First half of the array: ");
+    for(i = 0; i < half; i++) {
+        printf("%d ", arr1[i]);
+    }
+    printf("\n");
+    printf("Second half of the array: ");
+    for(i = 0; i < size - half; i++) {
+        printf("%d ", arr2[i]);
+    }
+    return 0;
+}
